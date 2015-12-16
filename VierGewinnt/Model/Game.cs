@@ -34,9 +34,7 @@ namespace VierGewinnt.Model
         public void play(int column)
         {
             AssertStillInRunning();
-            //AssertExistPlayer(currentPlayer);
             grid.dropToken(column, currentPlayer.Token);
-
             string winnerName = getWinnerName();
             if (!string.IsNullOrEmpty(winnerName))
             {
@@ -51,41 +49,17 @@ namespace VierGewinnt.Model
         public string getWinnerName()
         {
             string winnerToken = grid.fourInLine();
-            if (!string.IsNullOrEmpty(winnerToken))
-            {
-
-                return currentPlayer.Name;
-            }
-            return null;
+            return !string.IsNullOrEmpty(winnerToken) ? currentPlayer.Name : null;
         }
-
-
 
         public bool IsFinished()
         {
-            return getWinnerName() != null||!hasStillPlace();
+            return getWinnerName() != null || !hasStillPlace();
         }
 
         static string UppercaseFirst(string s)
         {
-            if (!string.IsNullOrEmpty(s))
-            {
-                return char.ToUpper(s[0]) + s.Substring(1);
-            }
-            return s;
-
-        }
-
-        private string formatPlayerName(string name)
-        {
-            if (!string.IsNullOrEmpty(name))
-            {
-                string formattedName = name.Trim();
-                formattedName = UppercaseFirst(formattedName);
-                return formattedName;
-            }
-            return name;
-
+            return !string.IsNullOrEmpty(s) ? char.ToUpper(s[0]) + s.Substring(1) : s;
         }
 
         public void addPlayer(string name)
@@ -156,24 +130,14 @@ namespace VierGewinnt.Model
         {
             return getAllPlayers().Single(p => string.Equals(p.Token, token));
         }
-        /*private Player findByName(string name)
+        private string formatPlayerName(string name)
         {
-            string formattedName = formatPlayerName(name);
-            AssertNullOrEmptyPlayerName(formattedName);
-            if (string.Equals(formattedName, playerA.Name))
-            {
-                return playerA;
-            }
-            if (string.Equals(formattedName, playerB.Name))
-            {
-                return playerB;
-            }
-            return null;
-        }*/
+            return !string.IsNullOrEmpty(name) ? UppercaseFirst(name.Trim()) : name;
+        }
 
         private void raiseWinEvent(string name)
         {
-            if (hasWon!=null)
+            if (hasWon != null)
             {
                 hasWon.Invoke(this, new WinEventArgs(name));
             }
@@ -183,21 +147,14 @@ namespace VierGewinnt.Model
         {
             if (grid.fourInLine() != null)
             {
-                throw new GameException("The Game is finish. four "+ grid.fourInLine()+" have been found");
+                throw new GameException("The Game is finish. four " + grid.fourInLine() + " have been found");
             }
+
             if (!grid.hasStillPlace())
             {
                 throw new GameException("The Game is finish. No winner.");
             }
         }
-
-        /*private void AssertNullOrEmptyPlayerName(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                throw new GameException("The player's name is null");
-            }
-        }*/
 
         private void AssertRightGridDimension(int width, int height)
         {
@@ -220,33 +177,10 @@ namespace VierGewinnt.Model
             }
         }
 
-        /*private void AssertExistPlayer(Player p)
-        {
-            if (p == null)
-            {
-                throw new GameException("The player doesn't exist.");
-            }
-        }*/
-
-       /* private void AssertIsPlayerTurn(Player p)
-        {
-            if (p != currentPlayer)
-            {
-                throw new GameException("It is not the Player " + p + "'s turn");
-            }
-        }*/
-
-      /*  private void AssertPlayerInTheGame(Player p)
-        {
-            if (p != playerB && p != playerA)
-            {
-                throw new GameException("The player " + p + " is not in the game");
-            }
-        }*/
         private void AssertPlayerNameStillExist(string name)
         {
 
-            if (playerA!=null&&playerA.Name!=null&&string.Equals(name, playerA.Name))
+            if (playerA != null && playerA.Name != null && string.Equals(name, playerA.Name))
             {
                 throw new GameException(string.Format("The player's name {0} still exists", name));
             }

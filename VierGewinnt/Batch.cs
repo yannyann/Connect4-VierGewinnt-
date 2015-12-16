@@ -23,15 +23,16 @@ namespace VierGewinnt.Model
         private void play()
         {
             Console.WriteLine("\n{0} bitte Spielspalte angeben : ", game.getCurrentPlayerName());
-            int column=-1;
+            int column = -1;
             try
             {
-                column = int.Parse(waitForText())-1;
+                column = int.Parse(waitForText()) - 1;
                 game.play(column);
                 showGrid();
-            }catch(ColumnOutOfGridException e)
+            }
+            catch (ColumnOutOfGridException e)
             {
-                Console.WriteLine(string.Format("The column {0} cannot be choosed because it doesn't belong to the grid size.", column+1));
+                Console.WriteLine(string.Format("The column {0} cannot be choosed because it doesn't belong to the grid size.", column + 1));
             }
             catch (Exception e)
             {
@@ -157,7 +158,7 @@ namespace VierGewinnt.Model
             Console.Write(" ");
             for (int i = 0; i < game.getWidth(); i++)
             {
-                Console.Write(string.Format(" {0,1} ", i+1));
+                Console.Write(string.Format(" {0,1} ", i + 1));
             }
             Console.WriteLine(" ");
         }

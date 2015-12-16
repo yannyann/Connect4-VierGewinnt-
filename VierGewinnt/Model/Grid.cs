@@ -34,6 +34,11 @@ namespace VierGewinnt.Model
             Cells = new string[this.Width * this.Height];
         }
 
+     /*   public string GetTokenAtPosition(int x, int y)
+        {
+
+        }*/
+
         /// <summary>
         /// put the token in the column at the position X
         /// Throw a GridException if the column position is wrong or the column is full.

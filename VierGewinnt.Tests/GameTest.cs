@@ -18,6 +18,30 @@ namespace VierGewinnt.Tests
             game.addPlayer(null);
         }
 
+        [Fact]
+        public void Should_Write_The_Default_Name_For_First_Player()
+        {
+            Game g = new Game();
+            g.addPlayer(null); 
+
+        }
+
+        [Fact]
+        public void Should_Write_The_Default_Name_For_Second_Player()
+        {
+            Game g = new Game();
+            g.addPlayer("A");
+             g.addPlayer(null); ;
+        }
+
+        [Fact]
+        public void Should_Throw_An_Exception_Due_To_Wrong_Player_Name_3()
+        {
+            Game g = new Game();
+            g.addPlayer("A");
+            GameException exception = Assert.Throws<GameException>(() => { g.addPlayer("A"); });
+        }
+
         [Theory]
         [InlineData(0,0)]
         [InlineData(7, 5)]
@@ -73,7 +97,7 @@ namespace VierGewinnt.Tests
         }
 
         [Fact]
-        public void Should_ChangePlayer()
+        public void Should_Change_Player()
         {
             Assert.Equal("Spieler A", game.getCurrentPlayerName());
             game.play(0);
@@ -82,6 +106,99 @@ namespace VierGewinnt.Tests
             Assert.Equal("Spieler A", game.getCurrentPlayerName());
             game.play(3);
             Assert.Equal("Spieler B", game.getCurrentPlayerName());
+        }
+
+        [Fact]
+        public void Should_Throw_An_Exception_Because_Grid_Full()
+        {
+
+
+            game.play(0);
+            game.play(0);
+            game.play(0);
+            game.play(0);
+            game.play(0);
+            game.play(0);
+
+            game.play(1);
+            game.play(1);
+            game.play(1);
+            game.play(1);
+            game.play(1);
+            game.play(1);
+
+            game.play(2);
+            game.play(2);
+            game.play(2);
+            game.play(2);
+            game.play(2);
+            game.play(2);
+
+            game.play(4);
+
+            game.play(3);
+            game.play(3);
+            game.play(3);
+            game.play(3);
+            game.play(3);
+            game.play(3);
+
+            game.play(4);
+            game.play(4);
+            game.play(4);
+            game.play(4);
+            game.play(4);
+
+            game.play(5);
+            game.play(5);
+            game.play(5);
+            game.play(5);
+            game.play(5);
+            game.play(5);
+
+            game.play(6);
+            game.play(6);
+            game.play(6);
+            game.play(6);
+            game.play(6);
+            game.play(6);
+
+            Exception ex = Assert.Throws<GameException>(() => game.play(6));
+        }
+
+        [Theory]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        public void Should_Throw_An_Exception_Because_SomeBody_Still_Win(int column)
+        {
+
+
+            game.play(0);
+            game.play(0);
+            game.play(0);
+            game.play(0);
+            game.play(0);
+            game.play(0);
+
+            game.play(1);
+            game.play(1);
+            game.play(1);
+            game.play(1);
+            game.play(1);
+            game.play(1);
+
+            game.play(2);
+            game.play(2);
+            game.play(2);
+            game.play(2);
+            game.play(2);
+            game.play(2);
+
+            game.play(3);
+
+            Exception ex = Assert.Throws<GameException>(() => game.play(column));
         }
     }
 }
