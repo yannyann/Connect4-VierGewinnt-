@@ -122,6 +122,16 @@ namespace VierGewinnt.Model
             return grid.hasStillPlace();
         }
 
+        public string getPlayerNameA()
+        {
+            return playerA.Name;
+        }
+
+        public string getPlayerNameB()
+        {
+            return playerB.Name;
+        }
+
         private void changeTurn()
         {
             currentPlayer = currentPlayer == playerA ? playerB : playerA;
@@ -160,11 +170,11 @@ namespace VierGewinnt.Model
         {
             if (width < MIN_WIDTH)
             {
-                throw new GameException(string.Format("The width must be => {0}", MIN_WIDTH));
+                throw new GameException(string.Format("The width must be >= {0}", MIN_WIDTH));
             }
             if (height < MIN_HEIGHT)
             {
-                throw new GameException(string.Format("The width must be => {0}", MIN_HEIGHT));
+                throw new GameException(string.Format("The width must be >= {0}", MIN_HEIGHT));
             }
 
         }

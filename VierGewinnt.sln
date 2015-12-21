@@ -8,6 +8,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VierGewinnt.Tests", "VierGewinnt.Tests\VierGewinnt.Tests.csproj", "{F5297229-E531-4FE0-B3DB-E7C93256E869}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VierGewinnt.Rest", "VierGewinnt.Rest\VierGewinnt.Rest.csproj", "{89A10C36-D33D-4D77-B32D-60C080EE937C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29B57D48-3643-449B-BFEC-EC889B0A73FB} = {29B57D48-3643-449B-BFEC-EC889B0A73FB}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VierGewinnt.Rest.Test", "ClassLibrary1\VierGewinnt.Rest.Test.csproj", "{5FE85E95-1C13-49F6-BF8B-DE38C015E531}"
+	ProjectSection(ProjectDependencies) = postProject
+		{89A10C36-D33D-4D77-B32D-60C080EE937C} = {89A10C36-D33D-4D77-B32D-60C080EE937C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,10 @@ Global
 		{89A10C36-D33D-4D77-B32D-60C080EE937C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89A10C36-D33D-4D77-B32D-60C080EE937C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89A10C36-D33D-4D77-B32D-60C080EE937C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE85E95-1C13-49F6-BF8B-DE38C015E531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE85E95-1C13-49F6-BF8B-DE38C015E531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE85E95-1C13-49F6-BF8B-DE38C015E531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE85E95-1C13-49F6-BF8B-DE38C015E531}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
