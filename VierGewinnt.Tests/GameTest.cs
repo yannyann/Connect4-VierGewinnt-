@@ -40,7 +40,7 @@ namespace VierGewinnt.Tests
             Game g = new Game();
             g.addPlayer("A");
             GameException exception = Assert.Throws<GameException>(() => { g.addPlayer("A"); });
-            Assert.Equal(string.Format("The player's name {0} still exists", "A"), exception.Message);
+            Assert.Equal(string.Format("The player's name {0} already exists", "A"), exception.Message);
         }
 
         [Theory]

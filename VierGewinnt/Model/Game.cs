@@ -67,29 +67,15 @@ namespace VierGewinnt.Model
             string formattedName = formatPlayerName(name);
             AssertDontHaveTheTwoPlayers();
             AssertPlayerNameStillExist(formattedName);
-            if (string.IsNullOrEmpty(formattedName))
+
+            if (playerA == null)
             {
-                if (playerA == null)
-                {
-                    playerA = new Player("Spieler A", "X");
-                    currentPlayer = playerA;
-                }
-                else
-                {
-                    playerB = new Player("Spieler B", "O");
-                }
+                playerA = new Player(string.IsNullOrEmpty(formattedName) ? "Spieler A" : formattedName, "X");
+                currentPlayer = playerA;
             }
             else
             {
-                if (playerA == null)
-                {
-                    playerA = new Player(formattedName, "X");
-                    currentPlayer = playerA;
-                }
-                else
-                {
-                    playerB = new Player(formattedName, "O");
-                }
+                playerB = new Player(string.IsNullOrEmpty(formattedName) ? "Spieler B" : formattedName, "O");
             }
         }
 

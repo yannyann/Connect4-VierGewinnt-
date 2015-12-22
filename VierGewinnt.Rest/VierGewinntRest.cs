@@ -45,7 +45,7 @@ namespace VierGewinnt.Rest
                 }
                 catch (Exception e)
                 {
-                    return Response.AsJson(new DtoMessage() { Title = e.GetType().Name, Message = e.Message});
+                    return Response.AsJson(new DtoMessage() { Title = e.GetType().Name, Message = e.Message}, HttpStatusCode.BadRequest);
                 }
 
 
@@ -62,7 +62,7 @@ namespace VierGewinnt.Rest
                 }
                 catch (Exception e)
                 {
-                    return Response.AsJson(new DtoMessage() { Title = e.GetType().Name, Message = e.Message });
+                    return Response.AsJson(new DtoMessage() { Title = e.GetType().Name, Message = e.Message }, HttpStatusCode.BadRequest);
                 }
 
                 return Response.AsJson(dtoSessionStatus);
