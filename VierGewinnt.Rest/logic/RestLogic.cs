@@ -43,7 +43,6 @@ namespace VierGewinnt.Rest
                     game.getPlayerNameA(), game.getPlayerNameB(), game.getWidth(),
                     game.getHeight(), SessionStatus.State.AwaitingMovePlayerA)));
             return sessionid;
-
         }
 
       /*  private void assertDimension(DtoSessionStart sessionStart)
@@ -63,9 +62,34 @@ namespace VierGewinnt.Rest
             return Contexes[sessionId].Moves;
         }
 
-        public SessionStatus Play(Move move)
+        public SessionStatus.State Play(string sessionId, Move move)
         {
-            throw new NotImplementedException();
+            var context = Contexes[sessionId];
+            var game = context.Game;
+            
+            game.play(move.PlayerName, move.Column);
+
+            if (game.IsFinished())
+            {
+                if(game.getWinnerName() == game.getPlayerNameA())
+                {
+                    return SessionStatus.State.WinnerIsPlayerA;
+                }
+                else if (game.getWinnerName() == game.getPlayerNameB())
+                {
+                    return SessionStatus.State.WinnerIsPlayerB;
+                }
+            }
+            else if (game.getCurrentPlayerName() == game.getPlayerNameA())
+            {
+                return SessionStatus.State.AwaitingMovePlayerA;
+            }
+            else if (game.getCurrentPlayerName() == game.getPlayerNameB())
+            {
+                return SessionStatus.State.AwaitingMovePlayerB;
+            }
+
+            throw new GameException("Unknown state");
         }
 
         public SessionStatus Status(string sessionid)
@@ -80,10 +104,5 @@ namespace VierGewinnt.Rest
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-
-        /*   private bool tryToPlay(Move move)
-           {
-               game.d
-           }*/
     }
 }

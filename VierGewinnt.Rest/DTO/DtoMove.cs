@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VierGewinnt.Rest.logic
+namespace VierGewinnt.Rest.DTO
 {
-    public class Move
+    public class DtoMove
     {
         public string PlayerName { get; set; }
         public int Column { get; set; }
