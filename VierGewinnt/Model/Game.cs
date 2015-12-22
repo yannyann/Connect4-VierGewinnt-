@@ -66,7 +66,7 @@ namespace VierGewinnt.Model
         {
             string formattedName = formatPlayerName(name);
             AssertDontHaveTheTwoPlayers();
-            AssertPlayerNameStillExist(name);
+            AssertPlayerNameStillExist(formattedName);
             if (string.IsNullOrEmpty(formattedName))
             {
                 if (playerA == null)
@@ -183,7 +183,7 @@ namespace VierGewinnt.Model
         {
             if (playerA != null && playerB != null)
             {
-                throw new GameException(string.Format("This game still have its 2 players {0} vs {1}.", playerA.Name, playerB.Name));
+                throw new GameException(string.Format("This game already have its 2 players {0} vs {1}.", playerA.Name, playerB.Name));
             }
         }
 
@@ -192,7 +192,7 @@ namespace VierGewinnt.Model
 
             if (playerA != null && playerA.Name != null && string.Equals(name, playerA.Name))
             {
-                throw new GameException(string.Format("The player's name {0} still exists", name));
+                throw new GameException(string.Format("The player's name {0} already exists", name));
             }
         }
 

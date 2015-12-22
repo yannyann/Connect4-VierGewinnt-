@@ -30,7 +30,8 @@ namespace VierGewinnt.Rest
            // assertDimension(sessionStart);
 
             Game game = new Game();
-            game.newGrid(sessionStart.BoardWidth, sessionStart.BoardHeight);
+            game.newGrid(sessionStart.BoardWidth ?? 7, sessionStart.BoardHeight ?? 6);
+            Console.WriteLine(sessionStart.PlayerA.Equals(sessionStart.PlayerB));
             game.addPlayer(sessionStart.PlayerA);
             game.addPlayer(sessionStart.PlayerB);
             if (game == null)

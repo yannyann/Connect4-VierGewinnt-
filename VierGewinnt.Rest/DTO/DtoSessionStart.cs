@@ -12,8 +12,8 @@ namespace VierGewinnt.Rest.logic
 
         public string PlayerA { get; set; }
         public string PlayerB { get; set; }
-        public int BoardWidth { get; set; }
-        public int BoardHeight { get; set; }
+        public int? BoardWidth { get; set; }
+        public int? BoardHeight { get; set; }
 
 
     }

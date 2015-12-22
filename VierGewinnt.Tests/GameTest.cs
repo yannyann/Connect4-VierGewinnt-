@@ -35,11 +35,12 @@ namespace VierGewinnt.Tests
         }
 
         [Fact]
-        public void Should_Throw_An_Exception_Due_To_Wrong_Player_Name_3()
+        public void Should_Throw_An_Exception_Because_Second_Player_Name_Is_Same_As_First()
         {
             Game g = new Game();
             g.addPlayer("A");
             GameException exception = Assert.Throws<GameException>(() => { g.addPlayer("A"); });
+            Assert.Equal(string.Format("The player's name {0} still exists", "A"), exception.Message);
         }
 
         [Theory]

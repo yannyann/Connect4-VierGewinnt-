@@ -32,6 +32,9 @@ namespace VierGewinnt.Rest
 
         public VierGewinntRestModule(IVierGewinnt model)
         {
+            AutoMapper.Mapper.CreateMap<SessionStatus, DtoSessionStatus>();
+            AutoMapper.Mapper.AssertConfigurationIsValid();
+
             Post["/connectfour/sessions"] = parameters =>
             {
                 var sessionStart = this.Bind<DtoSessionStart>();
@@ -55,7 +58,7 @@ namespace VierGewinnt.Rest
                 try
                 {
                     SessionStatus sessionStatus = model.Status(parameters.id);
-                    dtoSessionStatus = new DtoSessionStatus(sessionStatus.PlayerA, sessionStatus.PlayerB, sessionStatus.BoardWidth, sessionStatus.BoardHeight, Enum.GetName(typeof(SessionStatus.State), sessionStatus.Status));
+                    dtoSessionStatus = AutoMapper.Mapper.Map<DtoSessionStatus>(sessionStatus);
                 }
                 catch (Exception e)
                 {
