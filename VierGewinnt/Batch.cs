@@ -27,7 +27,7 @@ namespace VierGewinnt.Model
             try
             {
                 column = int.Parse(waitForText()) - 1;
-                game.play(column);
+                game.play(game.getCurrentPlayerName(),column);
                 showGrid();
             }
             catch (ColumnOutOfGridException e)

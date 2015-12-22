@@ -31,9 +31,11 @@ namespace VierGewinnt.Model
             grid = new Grid(width, height);
         }
 
-        public void play(int column)
+        public void play(string playerName,int column)
         {
             AssertStillInRunning();
+            assertPlayerName(playerName);
+            AssertYourTurn(playerName);
             grid.dropToken(column, currentPlayer.Token);
             string winnerName = getWinnerName();
             if (!string.IsNullOrEmpty(winnerName))
@@ -179,6 +181,27 @@ namespace VierGewinnt.Model
             if (playerA != null && playerA.Name != null && string.Equals(name, playerA.Name))
             {
                 throw new GameException(string.Format("The player's name {0} already exists", name));
+            }
+        }
+
+        private void AssertYourTurn(string playerName)
+        {
+            string formattedName = formatPlayerName(playerName);
+            if(formattedName==null|| !string.Equals(formattedName,getCurrentPlayerName())){
+                throw new GameException(string.Format("{0} It's not your turn!", formattedName));
+            }
+        }
+
+        private void assertPlayerName(string playerName)
+        {
+            if (playerName == null)
+            {
+                throw new GameException("The player name is null.");
+            }
+            string formattedName = formatPlayerName(playerName);
+            if (!string.Equals(formattedName, playerA.Name)&& !string.Equals(formattedName, playerB.Name))
+            {
+                throw new GameException("The player name doesn't exist!");
             }
         }
 

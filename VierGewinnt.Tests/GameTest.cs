@@ -43,6 +43,21 @@ namespace VierGewinnt.Tests
             Assert.Equal(string.Format("The player's name {0} already exists", "A"), exception.Message);
         }
 
+        [Fact]
+        public void Should_Throw_An_Exception_Because_Player_Try_To_Play_Twice_Consecutivly()
+        {
+            game.play("Spieler A", 0);
+            
+            GameException exception = Assert.Throws<GameException>(() => { game.play("Spieler A", 0); });
+        }
+
+        [Fact]
+        public void Should_Throw_An_Exception_Because_Player_Try_To_Play_Without_Valid_Player_Name()
+        {
+
+            GameException exception = Assert.Throws<GameException>(() => { game.play("baba", 0); });
+        }
+
         [Theory]
         [InlineData(0,0)]
         [InlineData(7, 5)]
@@ -55,22 +70,22 @@ namespace VierGewinnt.Tests
         [Fact]
         public void Should_Return_True_Sign_Of_Victory_For_A_Player()
         {
-            game.play(0);
-            game.play(0);
-            game.play(0);
-            game.play(0);
+            game.play("Spieler A",0);
+            game.play("Spieler B", 0);
+            game.play("Spieler A", 0);
+            game.play("Spieler B", 0);
 
-            game.play(1);
-            game.play(1);
-            game.play(1);
-            game.play(1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
 
-            game.play(2);
-            game.play(2);
-            game.play(2);
-            game.play(2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
 
-            game.play(3);
+            game.play("Spieler A", 3);
             Assert.True(game.IsFinished());
             Assert.Equal("Spieler A", game.getWinnerName());
         }
@@ -78,34 +93,34 @@ namespace VierGewinnt.Tests
         [Fact]
         public void Should_Throw_An_Exception_Because_Game_Is_Finished()
         {
-            game.play(0);
-            game.play(0);
-            game.play(0);
-            game.play(0);
+            game.play("Spieler A", 0);
+            game.play("Spieler B", 0);
+            game.play("Spieler A", 0);
+            game.play("Spieler B", 0);
 
-            game.play(1);
-            game.play(1);
-            game.play(1);
-            game.play(1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
 
-            game.play(2);
-            game.play(2);
-            game.play(2);
-            game.play(2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
 
-            game.play(3);
-            Exception ex=Assert.Throws<GameException>(()=>game.play(3));
+            game.play("Spieler A", 3);
+            Exception ex=Assert.Throws<GameException>(()=>game.play("Spieler B", 3));
         }
 
         [Fact]
         public void Should_Change_Player()
         {
             Assert.Equal("Spieler A", game.getCurrentPlayerName());
-            game.play(0);
+            game.play("Spieler A",0);
             Assert.Equal("Spieler B", game.getCurrentPlayerName());
-            game.play(0);
+            game.play("Spieler B",0);
             Assert.Equal("Spieler A", game.getCurrentPlayerName());
-            game.play(3);
+            game.play("Spieler A",3);
             Assert.Equal("Spieler B", game.getCurrentPlayerName());
         }
 
@@ -114,57 +129,57 @@ namespace VierGewinnt.Tests
         {
 
 
-            game.play(0);
-            game.play(0);
-            game.play(0);
-            game.play(0);
-            game.play(0);
-            game.play(0);
+            game.play("Spieler A",0);
+            game.play("Spieler B", 0);
+            game.play("Spieler A", 0);
+            game.play("Spieler B", 0);
+            game.play("Spieler A", 0);
+            game.play("Spieler B", 0);
 
-            game.play(1);
-            game.play(1);
-            game.play(1);
-            game.play(1);
-            game.play(1);
-            game.play(1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
 
-            game.play(2);
-            game.play(2);
-            game.play(2);
-            game.play(2);
-            game.play(2);
-            game.play(2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
 
-            game.play(4);
+            game.play("Spieler A", 4);
 
-            game.play(3);
-            game.play(3);
-            game.play(3);
-            game.play(3);
-            game.play(3);
-            game.play(3);
+            game.play("Spieler B", 3);
+            game.play("Spieler A", 3);
+            game.play("Spieler B", 3);
+            game.play("Spieler A", 3);
+            game.play("Spieler B", 3);
+            game.play("Spieler A", 3);
 
-            game.play(4);
-            game.play(4);
-            game.play(4);
-            game.play(4);
-            game.play(4);
+            game.play("Spieler B", 4);
+            game.play("Spieler A", 4);
+            game.play("Spieler B", 4);
+            game.play("Spieler A", 4);
+            game.play("Spieler B", 4);
 
-            game.play(5);
-            game.play(5);
-            game.play(5);
-            game.play(5);
-            game.play(5);
-            game.play(5);
+            game.play("Spieler A", 5);
+            game.play("Spieler B", 5);
+            game.play("Spieler A", 5);
+            game.play("Spieler B", 5);
+            game.play("Spieler A", 5);
+            game.play("Spieler B", 5);
 
-            game.play(6);
-            game.play(6);
-            game.play(6);
-            game.play(6);
-            game.play(6);
-            game.play(6);
+            game.play("Spieler A", 6);
+            game.play("Spieler B", 6);
+            game.play("Spieler A", 6);
+            game.play("Spieler B", 6);
+            game.play("Spieler A", 6);
+            game.play("Spieler B", 6);
 
-            Exception ex = Assert.Throws<GameException>(() => game.play(6));
+            Exception ex = Assert.Throws<GameException>(() => game.play("Spieler A", 6));
         }
 
         [Theory]
@@ -176,30 +191,30 @@ namespace VierGewinnt.Tests
         {
 
 
-            game.play(0);
-            game.play(0);
-            game.play(0);
-            game.play(0);
-            game.play(0);
-            game.play(0);
+            game.play("Spieler A", 0);
+            game.play("Spieler B", 0);
+            game.play("Spieler A", 0);
+            game.play("Spieler B", 0);
+            game.play("Spieler A", 0);
+            game.play("Spieler B", 0);
 
-            game.play(1);
-            game.play(1);
-            game.play(1);
-            game.play(1);
-            game.play(1);
-            game.play(1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
+            game.play("Spieler A", 1);
+            game.play("Spieler B", 1);
 
-            game.play(2);
-            game.play(2);
-            game.play(2);
-            game.play(2);
-            game.play(2);
-            game.play(2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
+            game.play("Spieler A", 2);
+            game.play("Spieler B", 2);
 
-            game.play(3);
+            game.play("Spieler A", 3);
 
-            Exception ex = Assert.Throws<GameException>(() => game.play(column));
+            Exception ex = Assert.Throws<GameException>(() => game.play("Spieler B", column));
         }
     }
 }
