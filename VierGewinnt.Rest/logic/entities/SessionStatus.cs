@@ -4,7 +4,6 @@ namespace VierGewinnt.Rest.logic
 {
     public class SessionStatus
     {
-        [JsonConverter(typeof(StringEnumConverter))]
         public enum State
         {
             AwaitingMovePlayerA,

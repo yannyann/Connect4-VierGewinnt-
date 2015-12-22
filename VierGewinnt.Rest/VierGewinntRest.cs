@@ -42,11 +42,11 @@ namespace VierGewinnt.Rest
                 }
                 catch (Exception e)
                 {
-                    return Response.AsJson(new DtoMessage(e.GetType().Name, e.Message));
+                    return Response.AsJson(new DtoMessage() { Title = e.GetType().Name, Message = e.Message});
                 }
 
 
-                return Response.AsJson(new DtoSessionId(sessionId));
+                return Response.AsJson(new DtoSessionId() { Id = sessionId });
             };
 
             Get["/connectfour/sessions/{id}"] = parameters =>
@@ -59,7 +59,7 @@ namespace VierGewinnt.Rest
                 }
                 catch (Exception e)
                 {
-                    return Response.AsJson(new DtoMessage(e.GetType().Name, e.Message));
+                    return Response.AsJson(new DtoMessage() { Title = e.GetType().Name, Message = e.Message });
                 }
 
                 return Response.AsJson(dtoSessionStatus);

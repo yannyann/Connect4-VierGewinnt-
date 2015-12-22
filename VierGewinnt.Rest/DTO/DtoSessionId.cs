@@ -9,13 +9,5 @@ namespace VierGewinnt.Rest.DTO
     public class DtoSessionId
     {
         public string Id { get; set; }
-        public DtoSessionId()
-        {
-
-        }
-        public DtoSessionId(string Id)
-        {
-            this.Id = Id;
-        }
     }
 }
