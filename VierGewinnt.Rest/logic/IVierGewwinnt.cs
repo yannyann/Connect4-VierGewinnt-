@@ -10,8 +10,8 @@ namespace VierGewinnt.Rest
     public interface IVierGewinnt
     {
         string CreateSession(DtoSessionStart sessionStart);
-        SessionStatus Play(Move move);
-        SessionStatus Status(string status);
+        SessionStatus.State Play(string sessionId, Move move);
+        SessionStatus Status(string sessionId);
         IEnumerable<SessionStatus> Moves(string sessionId);
     }
 }
